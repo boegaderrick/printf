@@ -49,5 +49,5 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(p);
-	return (len + 1);
+	return (len);
 }
