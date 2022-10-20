@@ -52,7 +52,6 @@ int _printf(const char *format, ...)
 			len++;
 		}
 	}
-	_putchar('\0');
 	va_end(p);
 	return (len);
 }
