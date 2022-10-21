@@ -10,6 +10,8 @@ int _printf(const char *format, ...)
 	int i, c, len = 0;
 	va_list p;
 
+	if (format == NULL && p == NULL)
+		return (-1);
 	va_start(p, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -43,5 +45,5 @@ int _printf(const char *format, ...)
 			len++;
 		}
 	} va_end(p);
-	return (len);
+	return (len + 1);
 }
