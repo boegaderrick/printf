@@ -1,23 +1,17 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
-
 /**
 * _printf - produces output according to format
 * @format: mandatory argument for variadic function
 * Return: length of output string
 */
-
 int _printf(const char *format, ...)
 {
 	char *s;
 	int i, c, len = 0;
 	va_list p;
 
-	if (format == NULL) 
-	{
+	if (!format && p == NULL)
 		return (-1);
-	}
 	va_start(p, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -47,11 +41,9 @@ int _printf(const char *format, ...)
 			}
 		}
 		else
-		{
-			_putchar(format[i]);
+		{	_putchar(format[i]);
 			len++;
 		}
-	}
-	va_end(p);
+	} va_end(p);
 	return (len);
 }
