@@ -59,8 +59,8 @@ int _printf(const char *format, ...)
 	int i, j, len = 0;
 	va_list p;
 
-	if (format == NULL || p == NULL)
-		return (-1);
+	/*if (format == NULL || p == NULL)
+		return (-1);*/
 	va_start(p, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -69,7 +69,7 @@ int _printf(const char *format, ...)
 			i++;
 			ptr = conversion;
 			j = ptr(format[i], p);
-			if (j != 0)
+			if (j == -1)
 			{
 				return (-1);
 			}
