@@ -44,6 +44,12 @@ int conversion(const char spec, va_list p)
 			}
 		}
 	}
+	else
+	{
+		_putchar('%');
+		_putchar(spec);
+		len += 2;
+	}
 	return (len);
 }
 
@@ -59,8 +65,8 @@ int _printf(const char *format, ...)
 	int i, j, len = 0;
 	va_list p;
 
-	/*if (format == NULL || p == NULL)
-		return (-1);*/
+	if (format == NULL || p == NULL)
+		return (-1);
 	va_start(p, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
