@@ -16,18 +16,18 @@ int conversion(const char spec, va_list p)
 	{
 		return (-1);
 	}
-	if (spec == '%')
+	else if (spec == '%')
 	{
 		_putchar(spec);
 		len++;
 	}
-	if (spec == 'c')
+	else if (spec == 'c')
 	{
 		c = va_arg(p, int);
 		_putchar(c);
 		len++;
 	}
-	if (spec == 's')
+	else if (spec == 's')
 	{
 		s = va_arg(p, char *);
 		if (s == NULL)
