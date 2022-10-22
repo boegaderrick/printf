@@ -12,6 +12,10 @@ int conversion(const char spec, va_list p)
 	int len = 0;
 	char *s, c;
 
+	if (spec == ' ' || spec == '\0')
+	{
+		return (-1);
+	}
 	if (spec == '%')
 	{
 		_putchar(spec);
@@ -52,7 +56,7 @@ int conversion(const char spec, va_list p)
 int _printf(const char *format, ...)
 {
 	int (*ptr)(const char, va_list);
-	int i, len = 0;
+	int i, j, len = 0;
 	va_list p;
 
 	if (format == NULL || p == NULL)
@@ -64,7 +68,12 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			ptr = conversion;
-			len += ptr(format[i], p);
+			j = ptr(format[i], p);
+			if (j != 0)
+			{
+				return (-1);
+			}
+			len += j;
 		}
 		else
 		{	_putchar(format[i]);
