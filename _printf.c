@@ -55,7 +55,7 @@ int _printf(const char *format, ...)
 	int i, len = 0;
 	va_list p;
 
-	if (format == NULL && p == NULL)
+	if (format == NULL || p == NULL)
 		return (-1);
 	va_start(p, format);
 	for (i = 0; format[i] != '\0'; i++)
