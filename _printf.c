@@ -72,7 +72,9 @@ int funcpick(const char spec, va_list p)
 	spec_struct specifiers [] = {
 		{'%', percent},
 		{'s', string},
-		{'c', letter}
+		{'c', letter},
+		{'d', decimal},
+		{'i', integer}
 	};
 
 
@@ -80,7 +82,7 @@ int funcpick(const char spec, va_list p)
 	{
 		return (-1);
 	}
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 5; i++)
 	{
 		if (spec == specifiers[i].op)
 		{
