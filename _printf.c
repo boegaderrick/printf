@@ -107,8 +107,6 @@ int _printf(const char *format, ...)
 	int i, j, len = 0;
 	va_list p;
 
-	setbuf(stdout, NULL);
-
 	if (format == NULL || p == NULL)
 		return (-1);
 	va_start(p, format);
