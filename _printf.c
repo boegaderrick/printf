@@ -1,55 +1,95 @@
 #include "main.h"
 
 /**
-* conversion - selects format specifier
+* string - prints string to stdout
+* @p: source of string
+* Return: lenght of output string
+*/
+
+int string(va_list p)
+{
+	char *s = va_arg(p, char *);
+	int len = 0;
+
+	if (s == NULL)
+	{
+		len += _printf("(null)");
+	}
+	else
+	{
+		while (*s != '\0')
+		{
+			_putchar(*s);
+			s++;
+			len++;
+		}
+	}
+	return (len);
+}
+
+/**
+* percent - prints percent sign
+* @p: source of sign
+* Return: length of print
+*/
+
+int percent(__attribute__((unused)) va_list p)
+{
+	int len = 0;
+
+	_putchar('%');
+	len++;
+	return (len);
+}
+
+/**
+* letter - prints single character
+* @p: source of character
+* Return: length of print
+*/
+
+int letter(va_list p)
+{
+	int len = 0;
+	char c = va_arg(p, int);
+
+	_putchar(c);
+	len++;
+	return (len);
+}
+
+/**
+* funcpick - selects format specifier
 * @spec: char to aid selection
 * @p: list of items to print in place of specifier
 * Return: lenght of output string
 */
 
-int conversion(const char spec, va_list p)
+int funcpick(const char spec, va_list p)
 {
-	int len = 0;
-	char *s, c;
+	int i, len = 0;
+
+	spec_struct specifiers [] = {
+		{'%', percent},
+		{'s', string},
+		{'c', letter}
+	};
+
 
 	if (spec == ' ' || spec == '\0')
 	{
 		return (-1);
 	}
-	else if (spec == '%')
+	for (i = 0; i < 3; i++)
 	{
-		_putchar(spec);
-		len++;
-	}
-	else if (spec == 'c')
-	{
-		c = va_arg(p, int);
-		_putchar(c);
-		len++;
-	}
-	else if (spec == 's')
-	{
-		s = va_arg(p, char *);
-		if (s == NULL)
+		if (spec == specifiers[i].op)
 		{
-			len += _printf("(null)");
-		}
-		else
-		{
-			while (*s != '\0')
-			{
-				_putchar(*s);
-				s++;
-				len++;
-			}
+			return (specifiers[i].function(p));
 		}
 	}
-	else
-	{
-		_putchar('%');
-		_putchar(spec);
-		len += 2;
-	}
+	_putchar('%');
+	_putchar(spec);
+	len += 2;
 	return (len);
 }
 
@@ -73,7 +113,7 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			ptr = conversion;
+			ptr = funcpick;
 			j = ptr(format[i], p);
 			if (j == -1)
 			{
