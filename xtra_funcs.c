@@ -11,7 +11,7 @@
 char *conv_itoa(int num, char *str, int base)
 {
 	int neg = 0, i = 0, j;
-	char array[sizeof(str)];
+	char array[sizeof(int) * 8 + 1];
 
 	if (num == 0)
 	{
